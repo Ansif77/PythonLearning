@@ -6,4 +6,5 @@ b=10
 # a=10
 # print(a)
 
-a=(a>b & a==b)
+# a=(a>b & a==b)
+print("HELLO WORLD")
