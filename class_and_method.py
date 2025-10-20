@@ -49,24 +49,108 @@
 # print(type(bike1))
 
 # class variable and instance variable 
+# class Employee:
+
+#     company="Softronics"  #class variable
+
+#     def __init__(self,name,position):
+#         self.name = name            #instance Variables
+#         self.position = position    #instance Variables
+
+
+# emp1=Employee("John","Teacher")
+# emp2=Employee("Alice","Student")
+
+# #calling class variable
+# print(emp1.company)
+# print(emp2.company)
+
+# #calling Instance Variable
+# print(emp1.name)
+# print(emp2.name)
+
+
+
+#Inner Class method
+# class Employee:
+#     class Company:
+#         def __init__(self,cname,location):
+#             self.cname = cname
+#             self.location = location
+
+#     def __init__(self,name,salary,age,cname,location):
+#         self.name = name
+#         self.salary = salary
+#         self.age = age
+#         self.company =Employee.Company(cname,location)
+
+#     def display_employee(self):
+#         return f'My Name Is {self.name},{self.age} Years old, I am working in {self.company.cname} at {self.company.location}'
+    
+# emp1=Employee('JOHN',29000,29,'ABC','PERINTHALMANNA')
+
+# emp1.company.cname='xyz'
+# print(emp1.display_employee())
+
+
+#compotion
+# class Company:
+#     def __init__(self,cname,location):
+#         self.cname = cname
+#         self.location = location
+
+# class Employee:
+#     def __init__(self,name,age,cname,location):
+#         self.name = name
+#         self.age= age
+#         self.company= Company(cname,location)
+
+#     def display_employee(self):
+#         return f'my name is {self.name} {self.age} years old,working in {self.company.cname} at {self.company.location}'
+    
+# emp=Employee('alice',25,'abc','pattambi')
+# print(emp.display_employee())
+
+
+
+#tightly coupled
+# class Engine:
+#     def __init__(self,engine):
+#         self.engine = engine
+
+# class Car:
+#     def __init__(self,model):
+#         self.model= Engine(model)
+
+
+# car=Car('V6')
+# print(car.model.engine)
+
+# del car
+# try:
+#     print(car.model.engine)
+# except NameError as e:
+#     print(f'Error:{e}')
+
+
+#loosely coupled class or  #aggregation
+class Company:
+    def __init__(self,cname,location):
+        self.cname = cname
+        self.location = location
+
 class Employee:
+    def __init__(self,name,age,company):
+        self.name = name
+        self.age = age
+        self.company = company
 
-    company="Softronics"  #class variable
+    def display_employee(self):
+        return f'My Name Is {self.name},I am {self.age} years old,working in {self.company.cname} at {self.company.location}'
 
-    def __init__(self,name,position):
-        self.name = name            #instance Variables
-        self.position = position    #instance Variables
+c1=Company('ABC','PATTAMBI')
+emp=Employee('JOHN','54',c1)
+print(emp.display_employee())
 
-
-emp1=Employee("John","Teacher")
-emp2=Employee("Alice","Student")
-
-#calling class variable
-print(emp1.company)
-print(emp2.company)
-
-#calling Instance Variable
-print(emp1.name)
-print(emp2.name)
-
-
+del emp
+print(c1.cname)
